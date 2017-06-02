@@ -1,7 +1,7 @@
-# hj-server
+#hj-server
 
-webApp接口处理系统
-Spring+SpringMVC+MyBatis，也是本平台的核心框架组成，搭建本平台主要做学习研究之用，期望打造成一个通用的IT能力开放平台。
+#webApp接口处理系统
+###Spring+SpringMVC+MyBatis，也是本平台的核心框架组成，搭建本平台主要做学习研究之用，期望打造成一个通用的IT能力开放平台。
 基于maven构建
 功能说明：
 1、 
