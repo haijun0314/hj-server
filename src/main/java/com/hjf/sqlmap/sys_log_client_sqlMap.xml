@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysLogClient" >
+  <insert id="insert" parameterType="SysLogClient" >
+    insert into sys_log_client (logId, content, logTime, customerId,longitude,latitude,address)
+    values (#{logId}, #{content}, #{logTime}, #{customerId},#{longitude},#{latitude},#{address#)
+  </insert>
+   
+</mapper>

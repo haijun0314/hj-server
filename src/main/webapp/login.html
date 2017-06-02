@@ -1,0 +1,129 @@
+<html class="pixel-ratio-1">
+<head>
+	<meta charset="UTF-8">
+	<title>用户登录</title>
+    <script src="static/js/head.js"></script>
+	<!-- 
+	
+	<meta name="applicable-device" content="mobile">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta http-equiv="Cache-Control" content="no-siteapp">
+	<meta http-equiv="Cache-Control" content="no-transform">
+	<link rel="stylesheet" href="static/css/jquery-weui.css">
+	<link rel="stylesheet" href="static/css/weui.min.css">
+	<link rel="stylesheet" href="static/css/style.css">
+	<link rel="stylesheet" href="static/css/iconfont.css">
+	<script src="static/js/cookies.js"></script>
+	<script src="static/logic/common.js"></script>
+    <script src="static/js/jquery-2.1.4.js"></script>
+	<script src="static/js/fastclick.js"></script>
+	<script src="static/js/jquery-weui.js"></script>
+	<script src="static/js/vue.js"></script>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="hjw">
+	<link rel="apple-touch-icon" href="/static/images/touch-icon-iphone.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/images/touch-icon-ipad.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/static/images/touch-icon-iphone-retina.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/static/images/touch-icon-ipad-retina.png">
+	 -->
+	
+
+</head>
+<body ontouchstart="">
+	<!--头部导航 开始-->
+	<header class="bar bar-nav">
+	    <h1 class="title">登录</h1>
+	    <a href="javascript:;" onclick="javascript:history.back(-1);" class="icon pull-left"><i class="sstfont sst-xiangzuo"></i></a>
+   		<a href="/ucenter/member/login.html" class="icon pull-right"><i class="sstfont sst-wode"></i></a>
+    </header>
+	<!--头部导航 结束-->
+    <!--主体部分 开始-->
+    <div class="content">
+        <div class="content-block">
+            <div class="login_logo"> <img src="/static/images/login_logo.png"></div>
+            <form method="post"   id="formlogin">
+                <div class="weui-cells weui-cells_form">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">手机</label>
+                        </div>
+                        <div class="weui-cell__bd weui-cell_primary">
+                            <input class="weui-input" placeholder="请输入手机号" name="telephone"   id="telephone"  id="text" value="" type="text">
+                        </div>
+                    </div>
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">密码</label>
+                        </div>
+                        <div class="weui-cell__bd weui-cell_primary">
+                            <input class="weui-input" placeholder="请输入密码" name="password" id="password" value="" type="password">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="weui-btn-area">
+                <a class="weui-btn weui-btn_primary" id="loginBtn">登录</a>
+                <a href="/register" class="weui-btn weui-btn_default">注册</a>
+            </div>
+            <div class="qifeng_p"><a href="#" style="float:right">忘记密码？</a></div>
+        </div>
+    </div>
+    <!--主体部分 结束-->
+	<!--底部固定导航 开始-->
+	<div class="weui-tabbar">
+	    <a href="/" class="weui-tabbar__item ">
+		    <div class="weui-tabbar__icon"> <i class="sstfont sst-shouye"></i> </div>
+		    <p class="weui-tabbar__label">首 页</p>
+	    </a>
+		<a href="/news/index.html" class="weui-tabbar__item ">
+			<div class="weui-tabbar__icon"> <i class="sstfont sst-xuetang"></i> </div>
+			<p class="weui-tabbar__label">笔记</p>
+		</a>
+		<a href="/dashi/index.html" class="weui-tabbar__item ">
+			<div class="weui-tabbar__icon"> <i class="sstfont sst-dashizaixian"></i> </div>
+			<p class="weui-tabbar__label">发现</p>
+		</a>
+		<a href="/shop/index/index.html" class="weui-tabbar__item ">
+			<div class="weui-tabbar__icon"> <i class="sstfont sst-shangcheng"></i> </div>
+			<p class="weui-tabbar__label">我的</p>
+		</a>
+	</div>
+
+
+	<script>
+	  $(function() {
+	    	FastClick.attach(document.body);
+	  });
+	 $('#loginBtn').click(function () {
+	 	   var telephone = $("#telephone").val();
+	 	   var password  = $("#password").val();
+	 	   if(telephone==null||telephone==""){
+	 	   		 $.toast("请输入手机号");
+	 	   		 return ;
+	 	   }
+	 	   if(password==null||password==""){
+	 	   		 $.toast("请输入密码");
+	 	   		 return ;
+	 	   }
+	 	  
+	 	   $('#loginBtn').addClass(" weui-btn_disabled");
+           var data = $("#formlogin").serialize();
+           var url = "/login?weblogin";
+           $.post(url, data, function (respData) {
+               if (respData.code == "0000") {
+                   setTimeout(function () {
+                     location.href = "index.html";
+                   }, 200);
+               } else {
+               		$('#loginBtn').removeClass(" weui-btn_disabled");
+                   $.toast(respData.msg);
+               }
+           }, 'json');
+      })
+	
+	</script>
+	
+
+</body>
+</html>

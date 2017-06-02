@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "Note">
+	<!-- 笔记详情 -->
+	<select id="noteDetail" parameterType="java.lang.Integer" resultType="java.util.HashMap" >
+	    select  *
+	    from note  n
+	    left  join  account  c on n.accountId=c.accountId
+	    where    n.noteId=#{noteId}
+	</select>
+	<!-- 查询id查询 -->
+	<select id="findById" parameterType="java.lang.Integer" resultType="Note" >
+	    select * from note  where    noteId=#{noteId}
+	</select>	 
+	 
+  <!-- 分页查询-->
+  <select id="queryPagelist" parameterType="org.jxjz.base.model.PageBean" resultType="java.util.HashMap" >
+    	select noteId,n.accountId,content,title,photos,  noteType,n.createdTime ,praiseCount,commentCount,
+    	c.accountName,c.headPic
+	    from note n
+	    left  join  account  c on n.accountId=c.accountId
+	    where  1=1  
+  	   	 <if test="@MyOgnl@isNotEmpty(params.accountId)">
+   		 	n.accountId=#{params.accountId}
+   		 </if>
+   		 order  by   createdTime  desc
+	    limit #{startRow},#{pageSize}
+  </select>  
+  	 
+	
+	<!-- 增加 -->
+	<insert id="insertWithId" parameterType="Note">
+		 insert into note (noteId,accountId,createdTime,content,title,photos,babyId)
+		 values(#{noteId},#{accountId},#{createdTime},#{content},#{title},#{photos},#{babyId})
+	    <selectKey resultType="int" keyProperty="noteId" >
+            SELECT @@IDENTITY AS noteId
+        </selectKey> 
+	</insert>
+  	 
+	<!-- 更新账户 -->
+	<update id="updateById" parameterType="Note" >
+	   update note 
+	   <trim suffix="set" suffixOverrides=","> 
+	  	     <if test="@MyOgnl@isNotEmpty(updatedTime)">
+	   		 	updatedTime=#updatedTime#
+	   		 </if>
+	   </trim>		 
+	   where noteId = #{noteId}
+	</update> 
+  
+</mapper>

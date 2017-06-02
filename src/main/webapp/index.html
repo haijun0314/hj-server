@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	<script src="static/js/head.js"></script>
+	
+  </head>
+  <script type="text/javascript">
+  	SysUtil.checkLogin();
+  </script>
+  
+  
+<body ontouchstart>
+	<div id="app_index">
+		<div class="bd detailtop" id="prolist" v-for="note in  noteList">
+			<a href="#">
+				<div class="weui_cells_title"> {{note.title}}</div>
+				<div class="weui_cells">
+					<div class="weui-row">
+						<div class="weui-col-25">发售金额<h2>600,000</h2></div>
+						<div class="weui-col-20">期限<h2>12<small><small>个月</small></small></h2></div>
+						<div class="weui-col-30">预期年化收益率<h2>12<small>%</small></h2></div>
+						<div class="weui-col-25"><canvas id="productlist20170330000001" width="65" height="65"></canvas></div>
+					</div>
+				</div>
+			
+			</a>
+		
+		</div>
+	</div>
+ <script src="static/logic/index.js"></script>
+</body>
+
+</html>
+
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<!-- 实体类,简称 -设置别名 -->
+	<typeAliases>
+	 	 <typeAlias alias="myOngl" type="org.jxjz.base.mybatis.Ognl" />
+		 <typeAlias alias="Query" type="org.jxjz.base.mybatis.Query" />
+		 <typeAlias alias="PageBean" type="org.jxjz.base.model.PageBean" />
+		 <typeAlias alias="Account" type="com.hjf.entity.Account" />
+		 <typeAlias alias="Note" type="com.hjf.entity.Note" />
+		 <typeAlias alias="SysLogClient" type="com.hjf.entity.SysLogClient" />
+		 
+	</typeAliases> 
+	<typeHandlers>
+		<typeHandler javaType="org.jxjz.framework.enums.DefaultStatus" handler="org.jxjz.framework.enums.handler.BaseEnumHandler"/>
+		<typeHandler javaType="org.jxjz.framework.enums.DelFlag" handler="org.jxjz.framework.enums.handler.BaseEnumHandler"/>
+		<typeHandler javaType="org.jxjz.framework.enums.ExistStatus" handler="org.jxjz.framework.enums.handler.BaseEnumHandler"/>
+		<typeHandler javaType="org.jxjz.framework.enums.MenuLevel" handler="org.jxjz.framework.enums.handler.BaseEnumHandler"/>
+		<typeHandler javaType="org.jxjz.framework.enums.MenuType" handler="org.jxjz.framework.enums.handler.BaseEnumHandler"/>
+		<typeHandler javaType="org.jxjz.framework.enums.StartOrStop" handler="org.jxjz.framework.enums.handler.BaseEnumHandler"/>
+		<typeHandler javaType="org.jxjz.framework.enums.IsSuper" handler="org.jxjz.framework.enums.handler.BaseEnumHandler"/>
+		<typeHandler javaType="org.jxjz.framework.enums.LogType" handler="org.jxjz.framework.enums.handler.BaseEnumHandler"/>
+	</typeHandlers>	
+	
+	
+	<!-- 实体接口映射资源 -->
+	<!--
+		说明：如果xxMapper.xml配置文件放在和xxMapper.java统一目录下，mappers也可以省略，因为org.mybatis.spring.mapper.MapperFactoryBean默认会去查找与xxMapper.java相同目录和名称的xxMapper.xml
+	-->
+	<mappers>
+	 
+		 <mapper resource="com/hjf/sqlmap/account_sqlMap.xml" />
+		 <mapper resource="com/hjf/sqlmap/note_sqlMap.xml" />
+		 <mapper resource="com/hjf/sqlmap/sys_log_client_sqlMap.xml" />
+	     
+	     
+	</mappers>
+
+</configuration>  

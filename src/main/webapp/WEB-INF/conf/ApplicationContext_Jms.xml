@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/jms
+        http://www.springframework.org/schema/jms/spring-jms-4.3.xsd
+	    http://activemq.apache.org/schema/core 
+	    http://activemq.apache.org/schema/core/activemq-core-5.11.1.xsd">
+	<!-- ActiveMQ 连接工厂 -->
+ 	<!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供-->
+	<!-- 如果连接网络：tcp://ip:61616；未连接网络：tcp://localhost:61616 以及用户名，密码-->
+	<amq:connectionFactory id="amqConnectionFactory"
+                           brokerURL="tcp://localhost:61616"
+                           userName="admin"
+                           password="admin" />
+    <!-- 配置JMS连接工长 -->
+    <bean id="connectionFactory"
+          class="org.springframework.jms.connection.CachingConnectionFactory">
+        <constructor-arg ref="amqConnectionFactory" />
+        <property name="sessionCacheSize" value="100" />
+    </bean>	
+	 
+	<!-- 定义消息队列（Queue） -->
+	<bean id="jmsQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		 <constructor-arg index="0" value="my-queue" />  
+	</bean>
+	
+	<!-- 配置JMS模板（Queue），Spring提供的JMS工具类，它发送、接收消息。 -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+		<property name="defaultDestination" ref="jmsQueue"></property>
+		<property name="receiveTimeout" value="10000" />
+ 		<!-- true是topic，false是queue，默认是false，此处显示写出false -->
+        <property name="pubSubDomain" value="false" />
+	</bean> 
+	 
+	<bean id="jmsSender" class="org.jxjz.framework.jms.JmsSender">
+	</bean>
+	<bean id="jmsReceive" class="org.jxjz.framework.jms.JmsReceive">
+	</bean>
+	<!-- 显示注入消息监听容器（Queue），配置连接工厂，监听的目标是demoQueueDestination，监听器是上面定义的监听器 -->
+	<bean id="listenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+		<property name="destination" ref="jmsQueue"></property>
+		<property name="messageListener" ref="jmsReceive"></property>
+	</bean>	 
+	
+</beans>

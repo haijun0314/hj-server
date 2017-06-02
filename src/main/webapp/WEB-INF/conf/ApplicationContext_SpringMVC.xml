@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd  
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-4.3.xsd  
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+				 		http://www.springframework.org/schema/aop
+				        http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">  
+	 <context:annotation-config/>
+	 <mvc:annotation-driven conversion-service="conversionService"/>
+	 <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+	 <!-- 自动扫描的包名 -->  
+	 <context:component-scan base-package="org.jxjz" ></context:component-scan>  
+	 <context:component-scan base-package="com.hjf" ></context:component-scan>  
+	 <context:component-scan base-package="test" ></context:component-scan>  
+	 <mvc:resources mapping="/JS/**" location="/JS/"/>
+	 <mvc:resources mapping="/static/**" location="/static/"/>
+	 <mvc:resources mapping="/uploadFile/**" location="/uploadFile/"/>
+	 <mvc:resources mapping="/favicon.ico" location="/favicon.ico"/>
+	 <mvc:resources mapping="/test/**" location="/test/"/>
+	 <mvc:resources mapping="/download/**" location="/download/"/>
+	 <mvc:resources mapping="/files/**" location="/files/"/>
+	 <mvc:resources mapping="/**.html" location="/"/>
+	 <!-- 视图解释类 -->  
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+	    <property name="prefix" value="/jsp/"/>  
+	    <property name="suffix" value=".jsp"/>
+    </bean>  
+
+ 	 
+ 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
+		<property name="messageConverters">
+			<list>
+				 <ref bean="mappingJacksonHttpMessageConverter" />
+                 <ref bean="stringHttpMessageConverter" />
+			</list>
+		</property>
+		 
+	</bean>   
+	<bean id = "stringHttpMessageConverter" class = "org.springframework.http.converter.StringHttpMessageConverter"/>
+	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->														 
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>   
+    
+	<!-- 支持上传文件 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />    
+ 
+	<!-- 全局异常配置 -->    
+    <bean id="exceptionResolver" class="org.jxjz.framework.exception.ExceptionHandler">     
+    </bean>  
+	 
+	<!-- 枚举类转换  -->
+	<bean id="conversionService"   class="org.springframework.context.support.ConversionServiceFactoryBean">  
+	    <property name="converters">  
+	        <list>  
+	            <bean class="org.jxjz.base.spring.converters.StringToEnumConverter"/> 
+	        </list>  
+	    </property>  
+	</bean> 
+
+    <mvc:interceptors>  
+        <!-- 多个拦截器,顺序执行 -->  
+        <mvc:interceptor>  
+           <mvc:mapping path="/*" /><!-- 如果不配置或/*,将拦截所有的Controller  -->  
+            <bean class="org.jxjz.framework.security.SecurityInterceptor"></bean>  
+        </mvc:interceptor>  
+    </mvc:interceptors>   
+
+
+
+</beans>
