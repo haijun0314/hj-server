@@ -15,8 +15,6 @@ public class BaseReqBean {
 	private String   versionNO;//版本编号
 	private String   telephone;//账户
 	private String   reqNO;//请求编号
-	
-
 
 
 	public Logger    log = LogUtil.getLogger(); 

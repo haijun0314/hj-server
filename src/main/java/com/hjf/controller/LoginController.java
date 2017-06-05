@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jxjz.base.spring.BaseAction;
-import org.jxjz.framework.exception.ErrorCodeUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,7 +17,7 @@ import com.hjf.service.LoginService;
  * 创建日期：2014-11-21
  */
 @Controller  
-@RequestMapping("/login") 
+@RequestMapping("/app/login") 
 public class LoginController extends BaseAction{
 	@Resource LoginService     loginService;
 	/**

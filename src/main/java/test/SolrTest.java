@@ -28,7 +28,7 @@ public class SolrTest {
     public static final String solrCroeHome = "my_solr";  
     //待索引、查询字段  
     public static void main(String[] args) throws Exception {  
-    	save();
+    	//save();
     	search(); 
     }  
     

@@ -109,7 +109,7 @@
 	 	  
 	 	   $('#loginBtn').addClass(" weui-btn_disabled");
            var data = $("#formlogin").serialize();
-           var url = "/login?weblogin";
+           var url = "/app/login?weblogin";
            $.post(url, data, function (respData) {
                if (respData.code == "0000") {
                    setTimeout(function () {

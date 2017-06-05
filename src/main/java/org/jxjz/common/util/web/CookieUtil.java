@@ -112,7 +112,7 @@ public class CookieUtil
 	 */
 	public static synchronized void setCookie(String key, String value){
 	    HttpServletResponse response = WebUtils.getResponse();
-	   
+	    
 		setCookie(response, key, value, 0);
 	}
 	
