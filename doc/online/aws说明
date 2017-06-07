@@ -1,0 +1,21 @@
+地址说明：服务器地址54.237.215.197
+mng:/home/ubuntu/tomcats/tomcat-mng http://54.237.215.197:8888/
+server1:/home/ubuntu/tomcats/tomcat-server1 http://54.237.215.197:8080
+server2:/home/ubuntu/tomcats/tomcat-server2 http://54.237.215.197:8081
+server3:/home/ubuntu/tomcats/tomcat-server3 http://54.237.215.197:8082
+solr:/home/ubuntu/tomcats/tomcat-solr  http://54.237.215.197:8088
+
+ApplicationContext_Dubbo.xml 【dubbo 服务地址】
+ApplicationContext_Cache.xml【redis缓存地址】
+ApplicationContext_Framework.xml【数据库地址】
+ApplicationContext_Jms.xml【activemq服务器地址】
+
+JDK：/usr/lib/jvm/jdk1.7.0_79
+fastdfs：/home/fastdfs   
+activemq;/home/ubuntu/activemq-5.14.0
+系统日志：/home/ubuntu/log
+搜索solr文件目录：/home/ubuntu/solr_home 【tomcat-solr使用存储】
+zookeeper：/home/ubuntu/zookeeper【dubbo 使用】
+nginx:/usr/local/nginx
+
+后续接入：redis
