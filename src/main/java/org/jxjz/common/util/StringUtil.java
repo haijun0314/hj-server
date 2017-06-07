@@ -1,5 +1,6 @@
 package org.jxjz.common.util;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +10,23 @@ import java.util.StringTokenizer;
 import org.apache.commons.lang.StringUtils;
 	
 public class StringUtil { 
+	
+	
+	/**
+	 * 比较BigDecimal 数值
+	 * @param v1
+	 * @param v2
+	 */
+	 public boolean compareTo(BigDecimal v1,BigDecimal v2){
+		 if(v1.compareTo(v2)>0){
+			 return true;
+		 }
+		 if(v1.compareTo(v2)<0){
+			 return false;
+		 }
+		 
+		return false;
+	 }	
 	
 	public static String   formatMoney(String money) {
 		if (StringUtils.isBlank(money)) {

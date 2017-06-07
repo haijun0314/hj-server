@@ -1,0 +1,4 @@
+ApplicationContext_Dubbo.xml 【dubbo 服务地址】
+ApplicationContext_Cache.xml【redis缓存地址】
+ApplicationContext_Framework.xml【数据库地址】
+ApplicationContext_Jms.xml【activemq服务器地址】

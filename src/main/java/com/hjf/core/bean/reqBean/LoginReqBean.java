@@ -1,6 +1,7 @@
 package com.hjf.core.bean.reqBean;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -10,7 +11,7 @@ import com.hjf.core.util.SecUtil;
 public class LoginReqBean extends BaseReqBean {
 	private String  telephone;//账户
 	private String  password;//用户密码
-	 
+	private HttpServletResponse response;
 
 	/**
 	 * 【账户登录参数验证】
@@ -26,6 +27,7 @@ public class LoginReqBean extends BaseReqBean {
 			log.error("【账户登录参数验证】 验证失败 password缺失 ");
 			return  false;
 		}
+		setResponse(response);
 		setTelephone(telephone); 		
 		setPassword(SecUtil.encrypt(password));
 		return true;
@@ -43,6 +45,20 @@ public class LoginReqBean extends BaseReqBean {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+
+
+
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+
+
+
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
 	}
 
 

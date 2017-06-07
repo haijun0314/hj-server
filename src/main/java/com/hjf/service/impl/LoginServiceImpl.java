@@ -36,9 +36,12 @@ public class LoginServiceImpl extends BaseService  implements LoginService {
 			r.fail(CodeUtil.e_1003);
 			return r;
 		}
+		log.info("登陆验证成功.....创建token");
 		AccountUtil.createToken(c);
+		log.info("登陆验证成功.....创建Session");
 		SessionUtil.setSession(ConfigUtil.Session_Login_User, c);
-		CookieUtil.setCookie(ConfigUtil.Cookie_Login_User, c.getUserToken());
+		log.info("登陆验证成功.....创建Cookie");
+		CookieUtil.setCookie(q.getResponse(),ConfigUtil.Cookie_Login_User, c.getUserToken());
 		copyProperties(r, c);
 		r.success();
 		return r;

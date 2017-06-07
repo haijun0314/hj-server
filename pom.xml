@@ -109,18 +109,7 @@
 		    <version>${activemq.version}</version>
 		</dependency>
 		
-		<!-- alibaba  -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>${dubbo.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>		
+		
 		
 		
 		
@@ -147,12 +136,7 @@
 		    <version>${jackson.version}</version>
 		</dependency>
 
-		<dependency>
-		    <groupId>com.101tec</groupId>
-		    <artifactId>zkclient</artifactId>
-		    <version>0.2</version>
-		</dependency>
-
+ 
 		
 		<!-- 数据库 -->
 		<dependency>
@@ -166,14 +150,30 @@
 		    <version>5.1.17</version>
 		</dependency>
  
+ 		<!-- dubbo服务   netty+dubbo+zkclient -->
+ 		<!-- netty -->
 		<dependency>
 		    <groupId>io.netty</groupId>
 		    <artifactId>netty-all</artifactId>
 		    <version>4.1.0.Final</version>
 		</dependency>
-
-
-
+		<!-- alibaba  -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>		
+		<dependency>
+		    <groupId>com.101tec</groupId>
+		    <artifactId>zkclient</artifactId>
+		    <version>0.2</version>
+		</dependency>
 
 
         <!-- redis -->

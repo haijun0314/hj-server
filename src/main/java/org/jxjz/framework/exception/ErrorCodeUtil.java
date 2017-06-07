@@ -39,7 +39,7 @@ public class ErrorCodeUtil
 		codeMap.put("9994", "数据重复");
 		codeMap.put("9993", "文件上传失败");
 		codeMap.put("9992", "操作失败");
-		codeMap.put("9990", "输入信息有误");
+		codeMap.put("9990", "数据重复提交");
 		 
 		 
 	}

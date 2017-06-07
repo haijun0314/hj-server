@@ -27,21 +27,21 @@
     <!--基础信息和关键信息缓存-->
     <bean id="redis_write" class="redis.clients.jedis.JedisPool">
         <constructor-arg index="0" ref="jedisPoolConfig" />
-        <constructor-arg index="1" value="192.168.0.100" />
+        <constructor-arg index="1" value="54.237.215.197" />
         <constructor-arg index="2" value="6379" type="int"/>
     </bean>
 
     <!--基础信息和关键信息缓存备份-->
     <bean id="redis_read" class="redis.clients.jedis.JedisPool">
         <constructor-arg index="0" ref="jedisPoolConfig" />
-        <constructor-arg index="1" value="192.168.0.100" />
+        <constructor-arg index="1" value="54.237.215.197" />
         <constructor-arg index="2" value="6379" type="int"/>
     </bean>
 
     <!--安装包信息-->
     <bean id="redis_install" class="redis.clients.jedis.JedisPool">
         <constructor-arg index="0" ref="jedisPoolConfig" />
-        <constructor-arg index="1" value="192.168.0.100" />
+        <constructor-arg index="1" value="54.237.215.197" />
         <constructor-arg index="2" value="6379" type="int"/>
     </bean> 
 	 

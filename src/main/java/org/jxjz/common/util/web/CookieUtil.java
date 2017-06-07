@@ -5,14 +5,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.jxjz.base.spring.WebUtils;
 import org.jxjz.common.util.EscapeEncode;
+import org.jxjz.framework.util.ConfigUtil;
+import org.jxjz.framework.util.LogUtil;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class CookieUtil
 {
+  public static Logger log = Logger.getLogger(CookieUtil.class);
   public static final String COOKIE_PAGE_SIZE = "_cookie_page_size";
   public static final int DEFAULT_SIZE = 20;
   public static final int MAX_SIZE = 200;
@@ -111,9 +115,16 @@ public class CookieUtil
 	 * 保存cookie,默认有效时间为1天
 	 */
 	public static synchronized void setCookie(String key, String value){
-	    HttpServletResponse response = WebUtils.getResponse();
-	    
-		setCookie(response, key, value, 0);
+	    try {
+			HttpServletResponse response = WebUtils.getResponse();
+		    if (response==null) {
+		    	 log.error(" 保存cookie 失败  response  null" );
+			}
+			setCookie(response, key, value, 0);
+		} catch (Exception e) {
+			 log.error(" 保存cookie 失败"+e.getMessage());
+		}
+
 	}
 	
 	

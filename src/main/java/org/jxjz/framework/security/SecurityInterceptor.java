@@ -32,11 +32,12 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
 	List<String> filterAuthorities=new ArrayList<String>();
 	@Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
-		//就简单判断了一下，如果要详细控制可以用spring security
 		String  url=URLUtil.buildRequestUrl(request);
 		log.info("【权限session拦截】"+url);
-        WebUtils.setRequest((HttpServletRequest)request);  
-        WebUtils.setResponse((HttpServletResponse)response);  
+        WebUtils.setRequest((HttpServletRequest)request); 
+        log.debug("WebUtils.setRequest....."+request.toString());
+        WebUtils.setResponse((HttpServletResponse)response); 
+        log.debug("WebUtils.setResponse....."+response.toString());
 		if(decideFilterAuthorities(url)){
 			return true;
 		}

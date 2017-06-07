@@ -29,6 +29,7 @@ public class LoginController extends BaseAction{
 			log.info("【用户登录】...");
 			LoginRespBean    r =new LoginRespBean();
 			LoginReqBean     q =new LoginReqBean();
+			q.setResponse(response);
 			boolean check     =q.checkParams(request);
 			if (!check) {
 				err_param(response, r);
